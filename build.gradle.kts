@@ -1,6 +1,7 @@
 plugins {
     kotlin("jvm") version "1.6.10"
     kotlin("plugin.allopen") version "1.6.10"
+    id("com.adarshr.test-logger") version "3.1.0"
     id("io.quarkus")
 }
 
@@ -22,6 +23,10 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     implementation("io.quarkus:quarkus-arc")
     implementation("io.quarkus:quarkus-resteasy-reactive")
+
+    implementation("io.quarkus:quarkus-flyway")
+    implementation("io.quarkus:quarkus-jdbc-postgresql")
+
     testImplementation("io.quarkus:quarkus-junit5")
     testImplementation("io.rest-assured:rest-assured")
 }
@@ -43,4 +48,8 @@ allOpen {
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
     kotlinOptions.jvmTarget = JavaVersion.VERSION_11.toString()
     kotlinOptions.javaParameters = true
+}
+
+tasks.test {
+    systemProperty("quarkus.test.profile", "test")
 }
