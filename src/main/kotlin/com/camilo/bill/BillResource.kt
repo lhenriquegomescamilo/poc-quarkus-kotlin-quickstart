@@ -19,7 +19,7 @@ class BillResource(private val billService: BillService) {
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    fun create(bill: BillDto): Uni<Map<String, Long>> {
+    fun create(bill: BillDto): Uni<Map<String, Long?>> {
         return GlobalScope.async { billService.create(bill) }.asUni().map { mapOf("id" to it) }
     }
 }
