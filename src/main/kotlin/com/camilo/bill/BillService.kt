@@ -17,11 +17,11 @@ import javax.transaction.Transactional
 class BillService {
 
     @CurrentThreadContext(unchanged = [ThreadContext.TRANSACTION])
-    fun create(bill: BillDto): Uni<Bill>{
+    fun create(bill: BillDto): Uni<BillDto>{
         val entity = bill.toEntity()
 //        Panache.withTransaction { Uni.createFrom().item(billRepository.persist(entity)) }.awaitSuspending()
 //        Panache.withTransaction {  }.awaitSuspending()
-        return entity.persist()
+        return entity.persist<Bill>().map { it.toDto() }
     }
 
 }

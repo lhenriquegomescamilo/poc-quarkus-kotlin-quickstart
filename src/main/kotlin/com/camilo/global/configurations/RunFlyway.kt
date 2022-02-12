@@ -3,6 +3,7 @@ package com.camilo.global.configurations
 import io.quarkus.runtime.StartupEvent
 import org.eclipse.microprofile.config.inject.ConfigProperty
 import org.flywaydb.core.Flyway
+import org.slf4j.LoggerFactory
 import javax.enterprise.context.ApplicationScoped
 import javax.enterprise.event.Observes
 
@@ -19,12 +20,19 @@ class RunFlyway(
     private val password: String
 ) {
 
+    private val logger = LoggerFactory.getLogger(RunFlyway::class.java)
+
     fun runFlywayMigration(@Observes event: StartupEvent) {
         if (isRunMigration) {
-            val flyway = Flyway.configure()
-                .dataSource(url, username, password)
-                .load()
-            flyway.migrate()
+            try {
+                val flyway = Flyway.configure()
+                    .dataSource(url, username, password)
+                    .load()
+                flyway.migrate()
+            } catch (e: Exception) {
+                logger.warn("Somethign wrong on run flyway migration: {}", e.message, e)
+            }
+
         }
     }
 }
