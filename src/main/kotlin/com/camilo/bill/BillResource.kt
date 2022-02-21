@@ -21,7 +21,7 @@ class BillResource(private val billService: BillService
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    fun create(bill: BillDto): Uni<BillDto> {
+    suspend fun create(bill: BillDto): BillDto {
         return billService.create(bill)
     }
 }
