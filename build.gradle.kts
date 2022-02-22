@@ -19,6 +19,7 @@ dependencies {
     implementation("io.quarkus:quarkus-hibernate-orm-panache-kotlin")
     implementation("io.quarkus:quarkus-smallrye-openapi")
     implementation("io.smallrye.reactive:mutiny-kotlin")
+    implementation("io.smallrye.config:smallrye-config")
 //    implementation("io.quarkus:quarkus-resteasy-mutiny")
     implementation("io.quarkus:quarkus-smallrye-context-propagation")
     implementation(enforcedPlatform("${quarkusPlatformGroupId}:${quarkusPlatformArtifactId}:${quarkusPlatformVersion}"))
@@ -30,12 +31,15 @@ dependencies {
     implementation("io.quarkus:quarkus-arc")
     implementation("io.quarkus:quarkus-hibernate-reactive-panache")
 
+    implementation("io.quarkus:quarkus-smallrye-reactive-messaging-kafka")
+
 
     implementation("io.quarkus:quarkus-flyway")
     implementation("io.quarkus:quarkus-jdbc-postgresql")
 
     testImplementation("io.quarkus:quarkus-junit5")
     testImplementation("io.rest-assured:rest-assured")
+    testImplementation("io.smallrye.reactive:smallrye-reactive-messaging-in-memory")
 }
 
 group = "com.camilo"
