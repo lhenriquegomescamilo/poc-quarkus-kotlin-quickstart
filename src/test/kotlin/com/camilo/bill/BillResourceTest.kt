@@ -19,12 +19,7 @@ class BillResourceTest {
 
     @Test
     fun `it should create bill`() {
-
-        val billIn = connector.source<BillDto>("bill-in")
-
         val billDto = BillDto(description = "Rent Car", price = 2000.31)
-        billIn.send(billDto)
-
 
         given()
             .contentType("application/json")

@@ -32,14 +32,13 @@ dependencies {
     implementation("io.quarkus:quarkus-hibernate-reactive-panache")
 
     implementation("io.quarkus:quarkus-smallrye-reactive-messaging-kafka")
-
+    testImplementation("io.smallrye.reactive:smallrye-reactive-messaging-in-memory:3.13.0")
 
     implementation("io.quarkus:quarkus-flyway")
     implementation("io.quarkus:quarkus-jdbc-postgresql")
 
     testImplementation("io.quarkus:quarkus-junit5")
     testImplementation("io.rest-assured:rest-assured")
-    testImplementation("io.smallrye.reactive:smallrye-reactive-messaging-in-memory")
 }
 
 group = "com.camilo"

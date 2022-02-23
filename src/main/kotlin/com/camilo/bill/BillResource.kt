@@ -17,6 +17,6 @@ class BillResource(private val billService: BillCommandService) {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     suspend fun create(bill: BillDto): Response {
-        return billService.create(bill).thenApply { Response.noContent().build() }.await()
+        return billService.create(bill).let { Response.noContent().build() }
     }
 }

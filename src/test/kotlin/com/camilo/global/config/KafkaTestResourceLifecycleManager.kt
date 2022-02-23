@@ -7,6 +7,7 @@ class KafkaTestResourceLifecycleManager : QuarkusTestResourceLifecycleManager {
     override fun start(): MutableMap<String, String> {
         return mutableMapOf<String, String>().apply {
             putAll(InMemoryConnector.switchIncomingChannelsToInMemory("bill-in"))
+            putAll(InMemoryConnector.switchOutgoingChannelsToInMemory("bill-out"))
         }
     }
 
